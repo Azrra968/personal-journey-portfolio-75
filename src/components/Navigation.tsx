@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Sun, Moon, Globe, Home } from "lucide-react";
 import { useState, useEffect } from "react";
+import { translations } from "../utils/translations";
 
 const Navigation = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -32,7 +33,13 @@ const Navigation = () => {
     const newLang = language === "en" ? "es" : "en";
     setLanguage(newLang);
     localStorage.setItem("language", newLang);
+    
+    // Update URL to reflect language change
+    const currentPath = location.pathname.split('/').slice(2).join('/');
+    window.location.href = `/${newLang}/${currentPath}`;
   };
+
+  const t = translations[language].nav;
 
   return (
     <div className="fixed top-4 right-4 flex items-center gap-4 z-50">
@@ -57,23 +64,23 @@ const Navigation = () => {
         <Moon className="h-4 w-4" />
       </div>
       <nav className="flex items-center gap-4">
-        <Link to="/">
+        <Link to={`/${language}`}>
           <Button variant="ghost">
             <Home className="h-4 w-4 mr-2" />
-            Home
+            {t.home}
           </Button>
         </Link>
-        <Link to="/about">
-          <Button variant="ghost">About</Button>
+        <Link to={`/${language}/about`}>
+          <Button variant="ghost">{t.about}</Button>
         </Link>
-        <Link to="/projects">
-          <Button variant="ghost">Projects</Button>
+        <Link to={`/${language}/projects`}>
+          <Button variant="ghost">{t.projects}</Button>
         </Link>
-        <Link to="/featured-work">
-          <Button variant="ghost">Featured Work</Button>
+        <Link to={`/${language}/featured-work`}>
+          <Button variant="ghost">{t.featuredWork}</Button>
         </Link>
-        <Link to="/contact">
-          <Button variant="ghost">Contact</Button>
+        <Link to={`/${language}/contact`}>
+          <Button variant="ghost">{t.contact}</Button>
         </Link>
       </nav>
     </div>
