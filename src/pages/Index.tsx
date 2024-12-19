@@ -1,10 +1,54 @@
 import { motion } from "framer-motion";
-import { ChevronRight, Github, Linkedin, Mail } from "lucide-react";
+import { ChevronRight, Github, Linkedin, Mail, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Switch } from "@/components/ui/switch";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check if user previously enabled dark mode
+    const isDark = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle("dark");
+    localStorage.setItem("darkMode", (!isDarkMode).toString());
+  };
+
   return (
     <div className="min-h-screen">
+      {/* Navigation and Dark Mode Switch */}
+      <div className="fixed top-4 right-4 flex items-center gap-4 z-50">
+        <div className="flex items-center gap-2">
+          <Sun className="h-4 w-4" />
+          <Switch
+            checked={isDarkMode}
+            onCheckedChange={toggleDarkMode}
+            aria-label="Toggle dark mode"
+          />
+          <Moon className="h-4 w-4" />
+        </div>
+        <nav className="flex items-center gap-4">
+          <Link to="/about">
+            <Button variant="ghost">About</Button>
+          </Link>
+          <Link to="/projects">
+            <Button variant="ghost">Projects</Button>
+          </Link>
+          <Link to="/featured-work">
+            <Button variant="ghost">Featured Work</Button>
+          </Link>
+        </nav>
+      </div>
+
       {/* Hero Section */}
       <section className="section-container min-h-[90vh] flex flex-col justify-center">
         <motion.div
