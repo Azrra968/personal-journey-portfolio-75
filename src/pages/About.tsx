@@ -3,11 +3,11 @@ import { Code2, Database, Globe, Server } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { useParams } from "react-router-dom";
-import { translations } from "../utils/translations";
+import { translations, Language } from "../utils/translations";
 
 const About = () => {
-  const { lang } = useParams();
-  const t = translations[lang as "en" | "es"].about;
+  const { lang = "en" } = useParams<{ lang: string }>();
+  const t = translations[lang as Language]?.about || translations.en.about;
 
   return (
     <div className="min-h-screen bg-background">
