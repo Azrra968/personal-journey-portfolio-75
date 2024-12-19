@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { Code2, Database, Globe, Server } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Navigation from "@/components/Navigation";
 
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       <section className="section-container">
         <motion.div
           initial={{ opacity: 0 }}
