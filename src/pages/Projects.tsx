@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { useParams } from "react-router-dom";
-import { translations } from "../utils/translations";
+import { translations, Language } from "../utils/translations";
 
 const projects = [
   {
@@ -82,8 +82,8 @@ const projects = [
 ];
 
 const Projects = () => {
-  const { lang } = useParams();
-  const t = translations[lang as "en" | "es"].projects;
+  const { lang = 'en' } = useParams<{ lang: Language }>();
+  const t = translations[lang as Language]?.projects || translations.en.projects;
 
   return (
     <div className="min-h-screen bg-background">
@@ -137,7 +137,6 @@ const Projects = () => {
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
                         {t.viewCode}
-                      
                       </Button>
                       <Button variant="outline" size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />

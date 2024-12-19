@@ -3,11 +3,11 @@ import { ChevronRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import { translations } from "../utils/translations";
+import { translations, Language } from "../utils/translations";
 
 const Index = () => {
-  const { lang } = useParams();
-  const t = translations[lang as "en" | "es"].home;
+  const { lang = 'en' } = useParams<{ lang: Language }>();
+  const t = translations[lang as Language]?.home || translations.en.home;
 
   return (
     <div className="min-h-screen">
