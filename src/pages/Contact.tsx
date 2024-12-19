@@ -3,15 +3,19 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import Navigation from "@/components/Navigation";
+import { useParams } from "react-router-dom";
+import { translations } from "../utils/translations";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { lang } = useParams();
+  const t = translations[lang as "en" | "es"].contact;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
-      title: "Message sent!",
-      description: "Thank you for your message. We'll get back to you soon.",
+      title: t.success,
+      description: t.description,
     });
   };
 
@@ -26,12 +30,11 @@ const Contact = () => {
           className="max-w-4xl mx-auto"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            Get in Touch
+            {t.title}
           </span>
-          <h1 className="heading-xl mb-6">Let's Connect</h1>
+          <h1 className="heading-xl mb-6">{t.subtitle}</h1>
           <p className="text-lg text-muted-foreground mb-12">
-            I'm always interested in hearing about new projects and opportunities.
-            Feel free to reach out!
+            {t.description}
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -46,7 +49,7 @@ const Contact = () => {
               <div className="flex items-start gap-4">
                 <Phone className="w-6 h-6 text-accent mt-1" />
                 <div>
-                  <h3 className="font-bold mb-1">Phone</h3>
+                  <h3 className="font-bold mb-1">{t.form.name}</h3>
                   <p className="text-muted-foreground">+1 (555) 123-4567</p>
                 </div>
               </div>
@@ -62,7 +65,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
+                  {t.form.name}
                 </label>
                 <input
                   type="text"
@@ -73,7 +76,7 @@ const Contact = () => {
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
+                  {t.form.email}
                 </label>
                 <input
                   type="email"
@@ -84,7 +87,7 @@ const Contact = () => {
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
+                  {t.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -94,7 +97,7 @@ const Contact = () => {
                 ></textarea>
               </div>
               <Button type="submit" className="w-full">
-                Send Message
+                {t.form.submit}
               </Button>
             </form>
           </div>

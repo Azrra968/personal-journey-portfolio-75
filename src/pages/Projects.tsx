@@ -3,6 +3,8 @@ import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
+import { useParams } from "react-router-dom";
+import { translations } from "../utils/translations";
 
 const projects = [
   {
@@ -80,6 +82,9 @@ const projects = [
 ];
 
 const Projects = () => {
+  const { lang } = useParams();
+  const t = translations[lang as "en" | "es"].projects;
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -90,12 +95,11 @@ const Projects = () => {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            Projects
+            {t.title}
           </span>
-          <h1 className="heading-xl mb-6">My Work</h1>
+          <h1 className="heading-xl mb-6">{t.subtitle}</h1>
           <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-            A collection of projects that showcase my expertise in software development,
-            from web applications to system architecture.
+            {t.description}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -132,11 +136,12 @@ const Projects = () => {
                     <div className="flex gap-4">
                       <Button variant="outline" size="sm">
                         <Github className="mr-2 h-4 w-4" />
-                        Code
+                        {t.viewCode}
+                      
                       </Button>
                       <Button variant="outline" size="sm">
                         <ExternalLink className="mr-2 h-4 w-4" />
-                        Demo
+                        {t.viewDemo}
                       </Button>
                     </div>
                   </CardContent>

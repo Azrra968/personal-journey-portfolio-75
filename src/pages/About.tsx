@@ -2,8 +2,13 @@ import { motion } from "framer-motion";
 import { Code2, Database, Globe, Server } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
+import { useParams } from "react-router-dom";
+import { translations } from "../utils/translations";
 
 const About = () => {
+  const { lang } = useParams();
+  const t = translations[lang as "en" | "es"].about;
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -14,22 +19,13 @@ const About = () => {
           transition={{ duration: 0.5 }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            About Me
+            {t.title}
           </span>
-          <h1 className="heading-xl mb-6">Background & Expertise</h1>
+          <h1 className="heading-xl mb-6">{t.subtitle}</h1>
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <p className="text-lg text-muted-foreground mb-6">
-                With over 8 years of experience in software development, I've had the privilege
-                of working on diverse projects across various industries. My journey in tech
-                began with a Computer Science degree, and since then, I've been passionate about
-                creating efficient, scalable solutions that solve real-world problems.
-              </p>
-              <p className="text-lg text-muted-foreground">
-                I specialize in full-stack development, with a particular focus on cloud
-                architecture and distributed systems. My approach combines technical excellence
-                with a deep understanding of business needs to deliver solutions that drive
-                real value.
+                {t.description}
               </p>
             </div>
             <div className="relative">
@@ -41,12 +37,12 @@ const About = () => {
             </div>
           </div>
 
-          <h2 className="heading-lg mb-8">Core Competencies</h2>
+          <h2 className="heading-lg mb-8">{t.expertise.title}</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <Card>
               <CardHeader>
                 <Globe className="h-8 w-8 text-accent mb-2" />
-                <CardTitle>Frontend Development</CardTitle>
+                <CardTitle>{t.expertise.frontend}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-muted-foreground">
@@ -61,7 +57,7 @@ const About = () => {
             <Card>
               <CardHeader>
                 <Server className="h-8 w-8 text-accent mb-2" />
-                <CardTitle>Backend Systems</CardTitle>
+                <CardTitle>{t.expertise.backend}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-muted-foreground">
@@ -76,7 +72,7 @@ const About = () => {
             <Card>
               <CardHeader>
                 <Database className="h-8 w-8 text-accent mb-2" />
-                <CardTitle>Database & Cloud</CardTitle>
+                <CardTitle>{t.expertise.cloud}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-muted-foreground">
@@ -91,7 +87,7 @@ const About = () => {
             <Card>
               <CardHeader>
                 <Code2 className="h-8 w-8 text-accent mb-2" />
-                <CardTitle>Best Practices</CardTitle>
+                <CardTitle>{t.expertise.practices}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-muted-foreground">
@@ -104,32 +100,29 @@ const About = () => {
             </Card>
           </div>
 
-          <h2 className="heading-lg mb-8">Professional Journey</h2>
+          <h2 className="heading-lg mb-8">{t.journey.title}</h2>
           <div className="space-y-8">
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">Senior Software Engineer</h3>
-              <p className="text-accent mb-4">2020 - Present • Tech Solutions Inc.</p>
+              <h3 className="text-xl font-bold mb-2">{t.journey.positions.senior.title}</h3>
+              <p className="text-accent mb-4">{t.journey.positions.senior.period} • {t.journey.positions.senior.company}</p>
               <p className="text-muted-foreground">
-                Led development of enterprise-scale applications, mentored junior developers,
-                and architected cloud-native solutions using modern technologies.
+                {t.journey.positions.senior.description}
               </p>
             </div>
             
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">Software Engineer</h3>
-              <p className="text-accent mb-4">2018 - 2020 • Innovation Labs</p>
+              <h3 className="text-xl font-bold mb-2">{t.journey.positions.mid.title}</h3>
+              <p className="text-accent mb-4">{t.journey.positions.mid.period} • {t.journey.positions.mid.company}</p>
               <p className="text-muted-foreground">
-                Developed and maintained multiple full-stack applications, implemented CI/CD
-                pipelines, and improved system performance.
+                {t.journey.positions.mid.description}
               </p>
             </div>
             
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">Junior Developer</h3>
-              <p className="text-accent mb-4">2016 - 2018 • StartUp Co</p>
+              <h3 className="text-xl font-bold mb-2">{t.journey.positions.junior.title}</h3>
+              <p className="text-accent mb-4">{t.journey.positions.junior.period} • {t.journey.positions.junior.company}</p>
               <p className="text-muted-foreground">
-                Built and maintained web applications, collaborated with cross-functional
-                teams, and participated in agile development processes.
+                {t.journey.positions.junior.description}
               </p>
             </div>
           </div>

@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import { translations } from "../utils/translations";
 
 const Index = () => {
+  const { lang } = useParams();
+  const t = translations[lang as "en" | "es"].home;
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -18,13 +22,13 @@ const Index = () => {
           className="max-w-4xl"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            Senior Software Engineer
+            {t.role}
           </span>
           <h1 className="heading-xl mb-6">
-            Creating exceptional digital experiences through elegant code
+            {t.headline}
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl">
-            With over 8 years of experience in software development, I specialize in building scalable applications and leading high-performance teams.
+            {t.description}
           </p>
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-4">
@@ -51,31 +55,31 @@ const Index = () => {
           className="max-w-4xl mx-auto"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            About Me
+            {t.aboutSection.title}
           </span>
           <h2 className="heading-lg mb-6">
-            Passionate about creating impactful solutions
+            {t.aboutSection.subtitle}
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            I'm a senior software engineer with expertise in building scalable web applications. My approach combines technical excellence with user-centered design principles to create solutions that not only work flawlessly but also provide exceptional user experiences.
+            {t.aboutSection.description}
           </p>
           <div className="grid sm:grid-cols-3 gap-8">
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="font-bold mb-2">Frontend Development</h3>
+              <h3 className="font-bold mb-2">{t.aboutSection.frontend.title}</h3>
               <p className="text-sm text-muted-foreground">
-                Expertise in React, TypeScript, and modern frontend frameworks
+                {t.aboutSection.frontend.description}
               </p>
             </div>
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="font-bold mb-2">Backend Systems</h3>
+              <h3 className="font-bold mb-2">{t.aboutSection.backend.title}</h3>
               <p className="text-sm text-muted-foreground">
-                Building robust APIs and scalable server architectures
+                {t.aboutSection.backend.description}
               </p>
             </div>
             <div className="glass-card p-6 rounded-lg">
-              <h3 className="font-bold mb-2">Technical Leadership</h3>
+              <h3 className="font-bold mb-2">{t.aboutSection.leadership.title}</h3>
               <p className="text-sm text-muted-foreground">
-                Leading teams and architecting complex solutions
+                {t.aboutSection.leadership.description}
               </p>
             </div>
           </div>
@@ -91,29 +95,29 @@ const Index = () => {
           viewport={{ once: true }}
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            Featured Work
+            {t.featuredWork.title}
           </span>
-          <h2 className="heading-lg mb-12">Recent Projects</h2>
+          <h2 className="heading-lg mb-12">{t.featuredWork.subtitle}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="group relative overflow-hidden rounded-lg">
               <div className="glass-card p-8 h-full transition-all duration-300 hover:translate-y-[-4px]">
-                <h3 className="heading-md mb-4">E-commerce Platform</h3>
+                <h3 className="heading-md mb-4">{t.featuredWork.projects.ecommerce.title}</h3>
                 <p className="text-muted-foreground mb-4">
-                  A full-stack e-commerce solution with real-time inventory management
+                  {t.featuredWork.projects.ecommerce.description}
                 </p>
                 <Button variant="outline" className="group-hover:bg-accent group-hover:text-white">
-                  View Case Study <ChevronRight className="ml-2 h-4 w-4" />
+                  {t.viewCaseStudy} <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </div>
             <div className="group relative overflow-hidden rounded-lg">
               <div className="glass-card p-8 h-full transition-all duration-300 hover:translate-y-[-4px]">
-                <h3 className="heading-md mb-4">Analytics Dashboard</h3>
+                <h3 className="heading-md mb-4">{t.featuredWork.projects.analytics.title}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Real-time data visualization platform for business intelligence
+                  {t.featuredWork.projects.analytics.description}
                 </p>
                 <Button variant="outline" className="group-hover:bg-accent group-hover:text-white">
-                  View Case Study <ChevronRight className="ml-2 h-4 w-4" />
+                  {t.viewCaseStudy} <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </div>
@@ -131,14 +135,14 @@ const Index = () => {
           className="max-w-2xl mx-auto text-center"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent mb-6">
-            Get in Touch
+            {t.contact.title}
           </span>
-          <h2 className="heading-lg mb-6">Let's work together</h2>
+          <h2 className="heading-lg mb-6">{t.contact.subtitle}</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            I'm always interested in hearing about new projects and opportunities.
+            {t.contact.description}
           </p>
           <Button size="lg" className="bg-accent hover:bg-accent/90">
-            Contact Me <Mail className="ml-2 h-4 w-4" />
+            {t.contact.cta} <Mail className="ml-2 h-4 w-4" />
           </Button>
         </motion.div>
       </section>
