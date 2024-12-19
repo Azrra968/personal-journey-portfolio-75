@@ -8,7 +8,7 @@ import { translations } from "../utils/translations";
 
 const Contact = () => {
   const { toast } = useToast();
-  // Extract lang from params and provide default
+  // Extract lang from URL params and provide default
   const { lang = "en" } = useParams<{ lang: string }>();
   // Ensure we use a valid language or fallback to English
   const currentLang = (lang === "es" ? "es" : "en") as "en" | "es";
