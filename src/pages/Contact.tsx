@@ -8,8 +8,11 @@ import { translations } from "../utils/translations";
 
 const Contact = () => {
   const { toast } = useToast();
-  const { lang } = useParams();
-  const t = translations[lang as "en" | "es"].contact;
+  // Extract lang from params and provide default
+  const { lang = "en" } = useParams<{ lang: string }>();
+  // Ensure we use a valid language or fallback to English
+  const currentLang = (lang === "es" ? "es" : "en") as "en" | "es";
+  const t = translations[currentLang].contact;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
