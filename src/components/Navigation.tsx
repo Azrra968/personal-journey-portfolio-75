@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Sun, Moon, Globe, Home } from "lucide-react";
@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState<"en" | "es">("en");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const isDark = localStorage.getItem("darkMode") === "true";
@@ -17,11 +18,11 @@ const Navigation = () => {
       document.documentElement.classList.add("dark");
     }
 
-    const savedLang = localStorage.getItem("language") as "en" | "es";
-    if (savedLang) {
-      setLanguage(savedLang);
-    }
-  }, []);
+    // Get language from URL path instead of localStorage
+    const pathLang = location.pathname.split('/')[1];
+    const validLang = pathLang === "es" ? "es" : "en";
+    setLanguage(validLang);
+  }, [location.pathname]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -34,9 +35,12 @@ const Navigation = () => {
     setLanguage(newLang);
     localStorage.setItem("language", newLang);
     
-    // Update URL to reflect language change
-    const currentPath = location.pathname.split('/').slice(2).join('/');
-    window.location.href = `/${newLang}/${currentPath}`;
+    // Get current path segments and replace language
+    const currentPathSegments = location.pathname.split('/').slice(2);
+    const newPath = `/${newLang}/${currentPathSegments.join('/')}`;
+    
+    // Use navigate instead of window.location for smoother transitions
+    navigate(newPath);
   };
 
   const t = translations[language].nav;
