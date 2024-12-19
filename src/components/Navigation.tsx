@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Sun, Moon, Globe } from "lucide-react";
+import { Sun, Moon, Globe, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Navigation = () => {
@@ -32,7 +32,6 @@ const Navigation = () => {
     const newLang = language === "en" ? "es" : "en";
     setLanguage(newLang);
     localStorage.setItem("language", newLang);
-    // Here you would typically redirect to the corresponding language route
   };
 
   return (
@@ -58,11 +57,12 @@ const Navigation = () => {
         <Moon className="h-4 w-4" />
       </div>
       <nav className="flex items-center gap-4">
-        {location.pathname !== "/" && (
-          <Link to="/">
-            <Button variant="ghost">Home</Button>
-          </Link>
-        )}
+        <Link to="/">
+          <Button variant="ghost">
+            <Home className="h-4 w-4 mr-2" />
+            Home
+          </Button>
+        </Link>
         <Link to="/about">
           <Button variant="ghost">About</Button>
         </Link>

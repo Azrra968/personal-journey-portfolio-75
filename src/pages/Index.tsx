@@ -27,11 +27,6 @@ const Index = () => {
             With over 8 years of experience in software development, I specialize in building scalable applications and leading high-performance teams.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/projects">
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
-                View Projects <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
             <div className="flex items-center gap-4">
               <Button size="icon" variant="outline">
                 <Github className="h-5 w-5" />

@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import About from "./pages/About";
 import FeaturedWork from "./pages/FeaturedWork";
 import Contact from "./pages/Contact";
+import Navigation from "./components/Navigation";
 
 const queryClient = new QueryClient();
 
